@@ -12,16 +12,16 @@
 
 class Calculation:
 
-    def product_letter_or_nums(self):
+    def product_letter_or_nums(self, arg):
         vowels = 0
         consonants = 0
         listVowels = []
         listConsonants = []
         sumNum = 0
 
-        if isinstance(self, str):
+        if isinstance(arg, str):
 
-            for i in self:
+            for i in arg:
                 if i.isalpha():
                     if i.lower() in 'аоеёюяуиэыaeiouy':
                         vowels += 1
@@ -30,33 +30,34 @@ class Calculation:
                         consonants += 1
                         listConsonants.append(i)
 
-            if vowels * consonants <= Calculation.search_length(self):
+            if vowels * consonants <= self.search_length(arg):
                 print(f'Все гласные {listVowels}')
             else:
                 print(f'Все согласные {listConsonants}')
 
-        elif isinstance(self, int):
+        elif isinstance(arg, int):
 
-            for i in str(self):
+            for i in str(arg):
                 if int(i) % 2 == 0:
                     sumNum += int(i)
 
-            print(f'Произведение суммы чётных цифр на длину числа: {sumNum * Calculation.search_length(self)}')
+            print(f'Произведение суммы чётных цифр на длину числа: {sumNum * self.search_length(arg)}')
 
-        else: print('Введены данные другого типа. Введите строку или число')
+        else:
+            print('Введены данные другого типа. Введите строку или число')
 
-    def search_length(self):
+    def search_length(self, arg):
         count = 0
-        if isinstance(self, str):
-            for i in self:
+        if isinstance(arg, str):
+            for i in arg:
                 count += 1
-        elif isinstance(self, int):
-            for i in str(self):
+        elif isinstance(arg, int):
+            for i in str(arg):
                 count += 1
 
         return count
 
 
-Calculation.product_letter_or_nums('abcdef')
-Calculation.product_letter_or_nums(1234)
-
+calculation = Calculation()
+calculation.product_letter_or_nums('abcdef')
+calculation.product_letter_or_nums(1234)
